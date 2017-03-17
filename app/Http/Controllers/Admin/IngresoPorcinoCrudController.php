@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\TagRequest as StoreRequest;
-use App\Http\Requests\TagRequest as UpdateRequest;
+use App\Http\Requests\IngresoPorcinoRequest as StoreRequest;
+use App\Http\Requests\IngresoPorcinoRequest as UpdateRequest;
 
-class TagCrudController extends CrudController
+class IngresoPorcinoCrudController extends CrudController
 {
 
     public function setUp()
@@ -19,9 +19,9 @@ class TagCrudController extends CrudController
 		| BASIC CRUD INFORMATION
 		|--------------------------------------------------------------------------
 		*/
-        $this->crud->setModel("App\Models\Tag");
-        $this->crud->setRoute("admin/tag");
-        $this->crud->setEntityNameStrings('tag', 'tags');
+        $this->crud->setModel("App\Models\IngresoPorcino");
+        $this->crud->setRoute("admin/ingresoPorcino");
+        $this->crud->setEntityNameStrings('Porcinos', 'Ingreso de Porcinos');
 
         /*
 		|--------------------------------------------------------------------------
@@ -29,17 +29,79 @@ class TagCrudController extends CrudController
 		|--------------------------------------------------------------------------
 		*/
 
-        //$this->crud->setFromDb();
+        //$this->crud->setFromDb();['Propietario', 'Marca', 'Destinos', 'Machos', 'Hembras','Total','Corral', 'Observaciones']
+        $this->crud->setColumns(
+            [
+                [
+                'name' => 'propietario', // The db column name
+                'label' => "Propietario" // Table column heading
+                ],
+                [
+                    'name' => 'marca', // The db column name
+                    'label' => "marca" // Table column heading
+                ],
+                [
+                    'name' => 'destinos', // The db column name
+                    'label' => "Destinos" // Table column heading
+                ],
+                [
+                    'name' => 'machos', // The db column name
+                    'label' => "Machos" // Table column heading
+                ],
+                [
+                    'name' => 'hembras', // The db column name
+                    'label' => "Hembras" // Table column heading
+                ],
+                [
+                    'name' => 'total', // The db column name
+                    'label' => "Total" // Table column heading
+                ],
+                [
+                    'name' => 'observaciones', // The db column name
+                    'label' => "Observaciones" // Table column heading
+                ]
+            ]
+        );
 
         // ------ CRUD FIELDS
-        $this->crud->addField([ // Text
-            'name' => 'name',
-            'label' => "Tag",
-            'type' => 'text',]
-                              , 'update/create/both');
-        
-        $this->crud->setColumns(['name']);
-        //$this->crud->addFields($array_of_arrays, 'update/create/both');
+        //$this->crud->addField(, 'update/create/both');
+
+        $this->crud->addFields([
+            [ // Propietario
+            'name' => 'propietario',
+            'label' => "Nombre del propietario",
+            'type' => 'text',],
+            [ // Marca
+            'name' => 'marca',
+            'label' => "Marca",
+            'type' => 'text',],
+            [ // Destinos
+                'name' => 'destinos',
+                'label' => "Destinos",
+                'type' => 'text',
+            ],
+            [   // Machos
+                'name' => 'machos',
+                'label' => 'Cantidad de machos',
+                'type' => 'number',
+            ],
+            [   // Hembras
+                'name' => 'hembras',
+                'label' => 'Catidad de hembras',
+                'type' => 'number',
+            ],
+            [ // corral
+                'name' => 'corral',
+                'label' => "Corral",
+                'type' => 'text',
+            ],
+            [   // Textarea
+                'name' => 'observaciones',
+                'label' => 'Observaciones',
+                'type' => 'textarea'
+            ],
+
+        ], 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
 

@@ -14,7 +14,7 @@ class CreateIngresoFincaTable extends Migration
     public function up()
     {
                 
-            Schema::create('ingresoConFierro', function (Blueprint $table) {
+            Schema::create('ingresoFierro', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombrePropietario');
             $table->string('destino', 15);
@@ -32,6 +32,6 @@ class CreateIngresoFincaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ingresoFierro');
     }
 }

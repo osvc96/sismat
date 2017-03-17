@@ -23,7 +23,7 @@
             
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
             
-            <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/tag') }}"><i class="fa fa-files-o"></i> <span>Tags</span></a></li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/ingresoPorcino') }}"><i class="glyphicon glyphicon-piggy-bank"></i> <span>Ingreso Porcinos</span></a></li>
 
 
           <!-- ======================================= -->

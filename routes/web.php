@@ -20,6 +20,6 @@ Route::group([
     'middleware' => ['admin'],
     'namespace' => 'Admin'
 ], function() {
-    // your CRUD resources and other admin routes here
-    CRUD::resource('tag', 'TagCrudController');
+    //CRUD::resource('ingresoFierro', 'IngresoFierroCrudController');
+    CRUD::resource('ingresoPorcino', 'ingresoPorcinoCrudController');
 });
