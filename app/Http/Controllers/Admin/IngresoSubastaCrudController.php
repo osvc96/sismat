@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\IngresoPorcinoRequest as StoreRequest;
-use App\Http\Requests\IngresoPorcinoRequest as UpdateRequest;
+use App\Http\Requests\IngresoSubastaRequest as StoreRequest;
+use App\Http\Requests\IngresoSubastaRequest as UpdateRequest;
+use Illuminate\Support\Facades\DB;
 
-class IngresoPorcinoCrudController extends CrudController
+class IngresoSubastaCrudController extends CrudController
 {
 
     public function setUp()
@@ -19,9 +20,9 @@ class IngresoPorcinoCrudController extends CrudController
 		| BASIC CRUD INFORMATION
 		|--------------------------------------------------------------------------
 		*/
-        $this->crud->setModel("App\Models\IngresoPorcino");
-        $this->crud->setRoute("admin/ingresoPorcino");
-        $this->crud->setEntityNameStrings('Porcinos', 'Ingreso de Porcinos');
+        $this->crud->setModel("App\Models\IngresoSubasta");
+        $this->crud->setRoute("admin/ingresoSubasta");
+        $this->crud->setEntityNameStrings('Bovinos', 'Ingreso de subasta');
 
         /*
 		|--------------------------------------------------------------------------
@@ -29,32 +30,25 @@ class IngresoPorcinoCrudController extends CrudController
 		|--------------------------------------------------------------------------
 		*/
 
-        //$this->crud->setFromDb();['Propietario', 'Marca', 'Destinos', 'Machos', 'Hembras','Total','Corral', 'Observaciones']
+        //$this->crud->setFromDb();
+
         $this->crud->setColumns(
             [
                 [
-                'name' => 'propietario', // The db column name
-                'label' => "Propietario" // Table column heading
+                    'name' => 'guia', // The db column name
+                    'label' => "Guía" // Table column heading
                 ],
                 [
-                    'name' => 'marca', // The db column name
-                    'label' => "Marca" // Table column heading
+                    'name' => 'propietario', // The db column name
+                    'label' => "Propietario" // Table column heading
                 ],
                 [
                     'name' => 'destinos', // The db column name
                     'label' => "Destinos" // Table column heading
                 ],
                 [
-                    'name' => 'machos', // The db column name
-                    'label' => "Machos" // Table column heading
-                ],
-                [
-                    'name' => 'hembras', // The db column name
-                    'label' => "Hembras" // Table column heading
-                ],
-                [
-                    'name' => 'total', // The db column name
-                    'label' => "Total" // Table column heading
+                    'name' => 'codigoAnimales', // The db column name
+                    'label' => "Codigos de los animales" // Table column heading
                 ],
                 [
                     'name' => 'corral', // The db column name
@@ -65,37 +59,65 @@ class IngresoPorcinoCrudController extends CrudController
                     'label' => "Observaciones" // Table column heading
                 ],
                 [
-                'name' => 'created_at', // The db column name
-                'label' => "Hora y Fecha de Ingreso" // Table column heading
+                    'name' => 'total', // The db column name
+                    'label' => "Total de animales" // Table column heading
+                ],
+                [
+                    'name' => 'created_at', // The db column name
+                    'label' => "Hora y Fecha de Ingreso" // Table column heading
                 ]
             ]
         );
 
-        // ------ CRUD FIELDS
-        //$this->crud->addField(, 'update/create/both');
-
         $this->crud->addFields([
+            [ // # de guia
+                'name' => 'guia',
+                'label' => "Guia",
+                'type' => 'text',
+            ],
             [ // Propietario
-            'name' => 'propietario',
-            'label' => "Nombre del propietario",
-            'type' => 'text',],
-            [ // Marca
-            'name' => 'marca',
-            'label' => "Marca",
-            'type' => 'text',],
+                'name' => 'propietario',
+                'label' => "Nombre del propietario",
+                'type' => 'text',
+            ],
             [ // Destinos
                 'name' => 'destinos',
                 'label' => "Destinos",
                 'type' => 'text',
             ],
-            [   // Machos
-                'name' => 'machos',
-                'label' => 'Cantidad de machos',
+            [ // Codigo de los animales
+                'name' => 'codigoAnimales',
+                'label' => "Codigo de los animales",
+                'type' => 'text',
+            ],
+            [
+                'name' => 'terneras',
+                'label' => "Terneras",
                 'type' => 'number',
             ],
-            [   // Hembras
-                'name' => 'hembras',
-                'label' => 'Catidad de hembras',
+            [
+                'name' => 'terneros',
+                'label' => "Terneros",
+                'type' => 'number',
+            ],
+            [
+                'name' => 'novillas',
+                'label' => "Novillas",
+                'type' => 'number',
+            ],
+            [
+                'name' => 'novillos',
+                'label' => "Novillos",
+                'type' => 'number',
+            ],
+            [
+                'name' => 'vacas',
+                'label' => "Vacas",
+                'type' => 'number',
+            ],
+            [
+                'name' => 'toros',
+                'label' => "Toros",
                 'type' => 'number',
             ],
             [ // corral
@@ -109,9 +131,16 @@ class IngresoPorcinoCrudController extends CrudController
                 'type' => 'textarea'
             ],
 
-        ], 'update/create/both');
-        // $this->crud->removeField('name', 'update/create/both');
-        // $this->crud->removeFields($array_of_names, 'update/create/both');
+        ], 'create/update/both');
+
+
+
+
+        // ------ CRUD FIELDS
+        // $this->crud->addField($options, 'update/create/both');
+        // $this->crud->addFields($array_of_arrays, 'update/create/both');
+        //$this->crud->removeField('total', 'update/create/both');
+        //$this->crud->removeField('total', 'create');
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
@@ -138,7 +167,12 @@ class IngresoPorcinoCrudController extends CrudController
         // NOTE: you also need to do allow access to the right users: $this->crud->allowAccess('reorder');
 
         // ------ CRUD DETAILS ROW
-        // $this->crud->enableDetailsRow();
+
+        $this->crud->enableDetailsRow();
+
+
+
+        $this->crud->allowAccess('bovino_details_row');
         // NOTE: you also need to do allow access to the right users: $this->crud->allowAccess('details_row');
         // NOTE: you also need to do overwrite the showDetailsRow($id) method in your EntityCrudController to show whatever you'd like in the details row OR overwrite the views/backpack/crud/details_row.blade.php
 
@@ -170,6 +204,16 @@ class IngresoPorcinoCrudController extends CrudController
         // $this->crud->orderBy();
         // $this->crud->groupBy();
         // $this->crud->limit();
+    }
+
+    public function showDetailsRow($id)
+    {
+        $this->crud->hasAccessOrFail('bovino_details_row');
+
+        $detalle = DB::table('ingresosubastas')->where('id', $id)->first();
+
+        // load the view from /resources/views/vendor/backpack/crud/ if it exists, otherwise load the one in the package
+        return view('crud::bovino_details_row', ['values' => $detalle]);
     }
 
 	public function store(StoreRequest $request)

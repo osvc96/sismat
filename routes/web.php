@@ -22,4 +22,5 @@ Route::group([
 ], function() {
     //CRUD::resource('ingresoFierro', 'IngresoFierroCrudController');
     CRUD::resource('ingresoPorcino', 'ingresoPorcinoCrudController');
+    CRUD::resource('ingresoSubasta', 'ingresoSubastaCrudController');
 });

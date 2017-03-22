@@ -23,8 +23,16 @@
             
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
             
-          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/ingresoPorcino') }}"><i class="glyphicon glyphicon-piggy-bank"></i> <span>Ingreso Porcinos</span></a></li>
 
+          <!-- Ingreso de animales -->
+          <li class="treeview">
+            <a href="#"><i class="glyphicon glyphicon-copy"></i> <span>Ingreso de animales</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a href="{{ url(config('backpack.base.route_prefix').'/user') }}"><i class="glyphicon glyphicon-grain"></i> <span>Ingreso de bovinos de finca</span></a></li>
+              <li><a href="{{ url(config('backpack.base.route_prefix').'/ingresoSubasta') }}"><i class="fa fa-group"></i> <span>Ingreso bovinos  de subasta</span></a></li>
+              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/ingresoPorcino') }}"><i class="glyphicon glyphicon-piggy-bank"></i> <span>Ingreso Porcinos</span></a></li>
+            </ul>
+          </li>
 
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIngresoPorcinosTable extends Migration
+class CreateIngresoSubastaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,18 @@ class CreateIngresoPorcinosTable extends Migration
      */
     public function up()
     {
-        Schema::create('ingresoPorcinos', function (Blueprint $table) {
+        Schema::create('ingresoSubastas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('guia');
             $table->string('propietario');
             $table->string('destinos');
-            $table->string('marca');
-            $table->integer('machos');
-            $table->integer('hembras');
+            $table->string('codigoAnimales');
+            $table->integer('terneras');
+            $table->integer('terneros');
+            $table->integer('novillas');
+            $table->integer('novillos');
+            $table->integer('vacas');
+            $table->integer('toros');
             $table->integer('total');
             $table->string('corral');
             $table->string('observaciones')->nullable();
@@ -34,6 +39,6 @@ class CreateIngresoPorcinosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingresoPorcinos');
+        Schema::dropIfExists('ingresoSubastas');
     }
 }
