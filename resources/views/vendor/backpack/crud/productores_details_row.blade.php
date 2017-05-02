@@ -1,0 +1,1 @@
+<img src="{{ asset('uploads'.$values->fierro) }}" alt="$values->nombre">

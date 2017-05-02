@@ -78,7 +78,8 @@ class IngresoPorcinoCrudController extends CrudController
             [ // Propietario
             'name' => 'propietario',
             'label' => "Nombre del propietario",
-            'type' => 'text',],
+            'type' => 'text',
+            ],
             [ // Marca
             'name' => 'marca',
             'label' => "Marca",

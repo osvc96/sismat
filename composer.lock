@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2cfd5ee299ede4418804382861729eb2",
+    "content-hash": "54081688f5c5070439d21d1df15ddee8",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1464,6 +1464,48 @@
             ],
             "description": "An adapter decorator to enable meta-data caching.",
             "time": "2016-11-20T21:02:42+00:00"
+        },
+        {
+            "name": "libern/qr-code-reader",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/libern/qr-code-reader.git",
+                "reference": "7f922162865320c76848a763b1a203c271b3975e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/libern/qr-code-reader/zipball/7f922162865320c76848a763b1a203c271b3975e",
+                "reference": "7f922162865320c76848a763b1a203c271b3975e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Libern\\QRCodeReader\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Libern Lin",
+                    "email": "libernlin@gmail.com"
+                }
+            ],
+            "description": "Simple PHP QR Code Reader / Decoder",
+            "homepage": "https://github.com/libern/qr-code-reader",
+            "keywords": [
+                "laravel",
+                "qr code decoder",
+                "qr code reader"
+            ],
+            "time": "2017-01-26T11:30:53+00:00"
         },
         {
             "name": "livecontrol/eloquent-datatable",

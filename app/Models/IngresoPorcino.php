@@ -34,6 +34,10 @@ class IngresoPorcino extends Model
 	| RELATIONS
 	|--------------------------------------------------------------------------
 	*/
+    public function canales()
+    {
+        return $this->hasMany('App\Models\MatanzaPorcino');
+    }
 
     /*
 	|--------------------------------------------------------------------------

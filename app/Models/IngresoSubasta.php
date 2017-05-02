@@ -16,7 +16,7 @@ class IngresoSubasta extends Model
 	*/
 
     protected $table = 'ingresosubastas';
-    //protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
     protected $fillable = ['guia', 'propietario', 'destinos', 'codigoAnimales', 'terneras', 'terneros', 'novillas','novillos', 'vacas', 'toros', 'corral', 'total', 'corral', 'observaciones'];
@@ -33,7 +33,13 @@ class IngresoSubasta extends Model
 	|--------------------------------------------------------------------------
 	| RELATIONS
 	|--------------------------------------------------------------------------
+    
 	*/
+	public function canales()
+    {
+        return $this->hasMany('App\Models\BovinoSubasta', 'canal_ingreso');
+    }
+
 
     /*
 	|--------------------------------------------------------------------------

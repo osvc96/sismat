@@ -41,4 +41,6 @@ class CreateIngresoSubastaTable extends Migration
     {
         Schema::dropIfExists('ingresoSubastas');
     }
+
 }
+
